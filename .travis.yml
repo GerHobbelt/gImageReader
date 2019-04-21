@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get -y install qt59base tesseract-ocr libpodofo-dev libjpeg-dev libdjvulibre-dev intltool-debian libzip-dev uuid-dev libxml++2.6-dev libpoppler-qt5-dev libquazip5-1 # libqtspell-qt5-dev
+  - sudo apt-get -y install qt59base tesseract-dev libsane-dev libpodofo-dev libjpeg-dev libdjvulibre-dev intltool-debian libzip-dev uuid-dev libxml++2.6-dev libpoppler-qt5-dev libquazip5-1 # libqtspell-qt5-dev
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
