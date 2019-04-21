@@ -12,6 +12,11 @@ install:
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
+  - git clone https://github.com/stachenov/quazip
+  - cd quazip
+  - qmake PREFIX=/usr
+  - sudo make install
+  - cd ..
   - mkdir build ; cd build
   - cmake .. -DINTERFACE_TYPE=qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
   - make -j$(nproc)
