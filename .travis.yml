@@ -12,11 +12,22 @@ install:
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
+  # QtSpell
+  - git clone https://github.com/manisandro/qtspell
+  - cd qtspell
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make -j$(nproc)
+  - sudo make install
+  - cd ..
+  # QuaZip
   - git clone https://github.com/stachenov/quazip
   - cd quazip
   - qmake PREFIX=/usr
   - sudo make install
   - cd ..
+  # gImageReader
   - mkdir build ; cd build
   - cmake .. -DINTERFACE_TYPE=qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
   - make -j$(nproc)
