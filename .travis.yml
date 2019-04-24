@@ -14,7 +14,7 @@ install:
 script:
   # Poppler
   - wget -c https://poppler.freedesktop.org/poppler-0.67.0.tar.xz
-  - tar xv poppler-*.tar.xz
+  - tar -xf poppler-*.tar.xz
   - cd poppler*/
   - mkdir build ; cd build
   - cmake  -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DTESTDATADIR=$PWD/testfiles -DENABLE_XPDF_HEADERS=ON
