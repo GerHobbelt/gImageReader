@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get -y install libgl-dev libfontconfig-dev qt59base qt59tools qt59translations intltool libenchant-dev libleptonica-dev tesseract-ocr-dev libsane-dev libpodofo-dev libjpeg-dev libdjvulibre-dev intltool-debian libzip-dev uuid-dev libxml++2.6-dev libquazip5-dev libquazip5-headers # libpoppler-qt5-dev libqtspell-qt5-dev
+  - sudo apt-get -y install libgl-dev libopenjp2-7-dev libfontconfig-dev qt59base qt59tools qt59translations intltool libenchant-dev libleptonica-dev tesseract-ocr-dev libsane-dev libpodofo-dev libjpeg-dev libdjvulibre-dev intltool-debian libzip-dev uuid-dev libxml++2.6-dev libquazip5-dev libquazip5-headers # libpoppler-qt5-dev libqtspell-qt5-dev
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
