@@ -25,7 +25,7 @@ script:
   - git clone https://github.com/manisandro/qtspell
   - cd qtspell
   - mkdir build ; cd build
-  - cmake ..
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
   - make -j$(nproc)
   - sudo make install
   - cd ../..
