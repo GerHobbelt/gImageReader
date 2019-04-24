@@ -40,6 +40,8 @@ script:
   - cmake .. -DINTERFACE_TYPE=qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
   - make -j$(nproc)
   - make DESTDIR=appdir -j$(nproc) install ; find appdir/
+  - mkdir -p ./appdir/usr/share/ ; cp -r /usr/share/tesseract-ocr ./appdir/usr/share/
+  - cp ../packaging/AppImage/AppRun ./appdir/ ; chmod +x ./appdir/AppRun # For TESSDATA_PREFIX
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
