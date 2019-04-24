@@ -17,7 +17,7 @@ script:
   - tar -xf poppler-*.tar.xz
   - cd poppler*/
   - mkdir build ; cd build
-  - cmake  -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DTESTDATADIR=$PWD/testfiles -DENABLE_XPDF_HEADERS=ON
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DTESTDATADIR=$PWD/testfiles -DENABLE_XPDF_HEADERS=ON
   - make -j$(nproc)
   - sudo make install
   - cd ../..
