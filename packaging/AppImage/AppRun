@@ -1,4 +1,4 @@
 #!/bin/bash
 HERE="$(dirname "$(readlink -f "${0}")")"
-export TESSDATA_PREFIX=${HERE}/usr/share/tesseract-ocr/
+export TESSDATA_PREFIX=${HERE}/usr/share/tesseract-ocr
 exec "${HERE}/usr/bin/gimagereader-qt5" "$@"
