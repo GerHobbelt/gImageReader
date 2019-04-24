@@ -36,6 +36,7 @@ script:
   - sudo make install
   - cd ..
   # gImageReader
+  - sed -i -e 's|TESSDATA_PREFIX|TxxxDATA_PREFIX|g' ./qt/src/Config.cc # FIXME; Do not mess with TESSDATA_PREFIX; https://github.com/manisandro/gImageReader/issues/405#issuecomment-486453480
   - mkdir build ; cd build
   - cmake .. -DINTERFACE_TYPE=qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
   - make -j$(nproc)
