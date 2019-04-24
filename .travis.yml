@@ -8,10 +8,19 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - sudo apt-get -y install qt59base qt59tools qt59translations intltool libenchant-dev libleptonica-dev tesseract-ocr-dev libsane-dev libpodofo-dev libjpeg-dev libdjvulibre-dev intltool-debian libzip-dev uuid-dev libxml++2.6-dev libpoppler-qt5-dev libquazip5-dev libquazip5-headers # libqtspell-qt5-dev
+  - sudo apt-get -y install libfontconfig-dev qt59base qt59tools qt59translations intltool libenchant-dev libleptonica-dev tesseract-ocr-dev libsane-dev libpodofo-dev libjpeg-dev libdjvulibre-dev intltool-debian libzip-dev uuid-dev libxml++2.6-dev libquazip5-dev libquazip5-headers # libpoppler-qt5-dev libqtspell-qt5-dev
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
+  # Poppler
+  - wget -c https://poppler.freedesktop.org/poppler-0.67.0.tar.xz
+  - tar xv poppler-*.tar.xz
+  - cd poppler*/
+  - mkdir build ; cd build
+  - cmake  -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DTESTDATADIR=$PWD/testfiles -DENABLE_XPDF_HEADERS=ON
+  - make -j$(nproc)
+  - sudo make install
+  - cd ../..
   # QtSpell
   - git clone https://github.com/manisandro/qtspell
   - cd qtspell
