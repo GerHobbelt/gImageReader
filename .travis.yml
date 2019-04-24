@@ -15,12 +15,11 @@ script:
   # QtSpell
   - git clone https://github.com/manisandro/qtspell
   - cd qtspell
-  - mkdir build
-  - cd build
+  - mkdir build ; cd build
   - cmake ..
   - make -j$(nproc)
   - sudo make install
-  - cd ..
+  - cd ../..
   # QuaZip
   - git clone https://github.com/stachenov/quazip
   - cd quazip
