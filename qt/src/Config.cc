@@ -199,7 +199,7 @@ QString Config::spellingLocation(Location location) {
 
 QString Config::tessdataLocation(Location location) {
 	// ###### https://github.com/manisandro/gImageReader/issues/405#issuecomment-486587984; FIXME in a proper way
-	QDir dataDir = QDir(QString("%1/../share/").arg(QApplication::applicationDirPath()));
+	QDir dataDir = QDir(QString("%1/../share/tesseract-ocr/").arg(QApplication::applicationDirPath()));
 	qputenv("TESSDATA_PREFIX", dataDir.absoluteFilePath("tessdata").toLocal8Bit());
 	// ######
 	QByteArray current = setlocale(LC_ALL, NULL);
