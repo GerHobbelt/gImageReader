@@ -198,29 +198,10 @@ QString Config::spellingLocation(Location location) {
 }
 
 QString Config::tessdataLocation(Location location) {
-	if(location == SystemLocation) {
-#ifdef Q_OS_WIN
-		QDir dataDir = QDir(QString("%1/../share/").arg(QApplication::applicationDirPath()));
-		qputenv("TESSDATA_PREFIX", dataDir.absoluteFilePath("tessdata").toLocal8Bit());
-#else
-# if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-		unsetenv("TESSDATA_PREFIX");
-# else
-		qunsetenv("TESSDATA_PREFIX");
-# endif
-#endif
-	} else {
-#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
-# ifdef Q_OS_WIN
-		QDir configDir = QDir(QDir::home().absoluteFilePath("Local Settings/Application Data"));
-# else
-		QDir configDir = QDir(QDir::home().absoluteFilePath(".config"));
-# endif
-#else
-		QDir configDir = QDir(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation));
-#endif
-		qputenv("TESSDATA_PREFIX", configDir.absoluteFilePath("tessdata").toLocal8Bit());
-	}
+	// ###### https://github.com/manisandro/gImageReader/issues/405#issuecomment-486587984; FIXME in a proper way
+	QDir dataDir = QDir(QString("%1/../share/").arg(QApplication::applicationDirPath()));
+	qputenv("TESSDATA_PREFIX", dataDir.absoluteFilePath("tessdata").toLocal8Bit());
+	// ######
 	QByteArray current = setlocale(LC_ALL, NULL);
 	setlocale(LC_ALL, "C");
 	tesseract::TessBaseAPI tess;
