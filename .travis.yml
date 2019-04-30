@@ -42,7 +42,7 @@ script:
   - make -j$(nproc)
   - make DESTDIR=appdir -j$(nproc) install ; find appdir/
   - mkdir -p ./appdir/usr/share/ ; cp -r /usr/share/tesseract-ocr ./appdir/usr/share/
-  - ( cd appdir ; apt-get download tesseract-ocr-* ; find . -name '*.deb*' -exec dpkg-deb -x . {} \; )
+  - ( cd appdir ; apt-get download tesseract-ocr-en tesseract-ocr-de ; find . -name '*.deb*' -exec dpkg-deb -x {} . \; )
   - cp ../packaging/AppImage/AppRun ./appdir/ ; chmod +x ./appdir/AppRun # For TESSDATA_PREFIX
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
