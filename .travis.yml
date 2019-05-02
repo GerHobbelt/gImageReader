@@ -13,6 +13,14 @@ install:
   - source /opt/qt*/bin/qt*-env.sh
 
 script:
+  # Enchant with --enable-relocatable
+  - wget -c "https://github.com/AbiWord/enchant/releases/download/v2.2.3/enchant-2.2.3.tar.gz"
+  - tar -xf enchant-*.tar.xz
+  - cd enchant*/
+  - ./configure --prefix=/usr --disable-static --enable-relocatable
+  - make -j$(nproc)
+  - sudo make install
+  - cd ..
   # Poppler
   - wget -c https://poppler.freedesktop.org/poppler-0.67.0.tar.xz
   - tar -xf poppler-*.tar.xz
@@ -45,6 +53,7 @@ script:
   - ( cd appdir ; apt-get download tesseract-ocr-eng tesseract-ocr-deu )
   - ( cd appdir ; find . -name '*.deb' -exec dpkg-deb -x {} . \; )
   - cp ../packaging/AppImage/AppRun ./appdir/ ; chmod +x ./appdir/AppRun # For TESSDATA_PREFIX
+  - cp -r /usr/share/enchant ./appdir/usr/share/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
