@@ -15,7 +15,7 @@ install:
 script:
   # Enchant with --enable-relocatable
   - wget -c "https://github.com/AbiWord/enchant/releases/download/v2.2.3/enchant-2.2.3.tar.gz"
-  - tar -xf enchant-*.tar.xz
+  - tar -xf enchant-*.tar.gz
   - cd enchant*/
   - ./configure --prefix=/usr --disable-static --enable-relocatable
   - make -j$(nproc)
