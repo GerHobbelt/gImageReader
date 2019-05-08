@@ -18,7 +18,7 @@ script:
   - tar -xf enchant-*.tar.gz
   - cd enchant*/
   - ./bootstrap
-  - ./configure --enable-relocatable --with-zemberek=check # --prefix=/usr
+  - ./configure --enable-relocatable --with-zemberek=check --prefix=/usr
   - make -j$(nproc)
   - sudo make install
   - cd ..
