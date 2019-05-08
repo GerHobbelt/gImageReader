@@ -289,11 +289,7 @@ void MainWindow::showAbout() {
 }
 
 void MainWindow::showHelp(const QString& chapter) {
-#ifdef Q_OS_WIN32
 	QDir manualDir(QString("%1/../share/doc/gimagereader").arg(QApplication::applicationDirPath()));
-#else
-	QDir manualDir(MANUAL_DIR);
-#endif
 	QString language = QLocale::system().name().left(2);
 	QString manualFile = manualDir.absoluteFilePath(QString("manual-%1.html").arg(language));
 	if(!QFile(manualFile).exists()) {
