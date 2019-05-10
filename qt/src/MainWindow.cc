@@ -289,7 +289,16 @@ void MainWindow::showAbout() {
 }
 
 void MainWindow::showHelp(const QString& chapter) {
-	QDir manualDir(QString("%1/../share/doc/gimagereader").arg(QApplication::applicationDirPath()));
+#ifdef Q_OS_WIN32
+	// Always use relative path on Windows
+	QString manualDirPath
+#else
+	QString manualDirPath(MANUAL_DIR);
+#endif
+	if(manualDirPath.isEmpty()) {
+		manualDirPath = QString("%1/../share/doc/gimagereader").arg(QApplication::applicationDirPath());
+	}
+	QDir manualDir(manualDirPath);
 	QString language = QLocale::system().name().left(2);
 	QString manualFile = manualDir.absoluteFilePath(QString("manual-%1.html").arg(language));
 	if(!QFile(manualFile).exists()) {
