@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkShortcutsWindow" id="shortcuts_dialog">
+    <property name="modal">1</property>
+    <child>
+      <object class="GtkShortcutsSection">
+        <property name="section-name">editor</property>
+        <property name="title" translatable="yes">Keyboard Shortcuts</property>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">Tab</property>
+                  <property name="title" translatable="yes">Next field</property>
+            </object>
+          </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Shift&gt;Tab</property>
+                  <property name="title" translatable="yes">Previous field</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">down</property>
+                  <property name="title" translatable="yes">Next line</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">up</property>
+                  <property name="title" translatable="yes">Previous line</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;space</property>
+                  <property name="title" translatable="yes">Spelling suggestions</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;return</property>
+                  <property name="title" translatable="yes">Add word to dictionary</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;B</property>
+                  <property name="title" translatable="yes">Toggle bold</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;I</property>
+                  <property name="title" translatable="yes">Toggle italic</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;D</property>
+                  <property name="title" translatable="yes">Divide word at cursor position</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;M</property>
+                  <property name="title" translatable="yes">Merge with previous word</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;&lt;Shift&gt;M</property>
+                  <property name="title" translatable="yes">Merge with next word</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;Delete</property>
+                  <property name="title" translatable="yes">Delete word</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;up</property>
+                  <property name="title" translatable="yes">Move the bounding box up</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;down</property>
+                  <property name="title" translatable="yes">Move the bounding box down</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;left</property>
+                  <property name="title" translatable="yes">Move the bounding box left</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;right</property>
+                  <property name="title" translatable="yes">Move the bounding box right</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;&lt;Shift&gt;up</property>
+                  <property name="title" translatable="yes">Shrink the bounding box vertically</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;&lt;Shift&gt;down</property>
+                  <property name="title" translatable="yes">Enlarge the bounding box vertically</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;&lt;Shift&gt;left</property>
+                  <property name="title" translatable="yes">Shrink the bounding box horizontally</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;&lt;Shift&gt;right</property>
+                  <property name="title" translatable="yes">Enlarge the bounding box horizontally</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;plus</property>
+                  <property name="title" translatable="yes">Increase font size</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;minus</property>
+                  <property name="title" translatable="yes">Decrease font size</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

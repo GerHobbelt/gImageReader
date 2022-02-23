@@ -525,35 +525,7 @@ void HOCRProofReadWidget::repositionWidget() {
 }
 
 void HOCRProofReadWidget::showShortcutsDialog() {
-	Glib::ustring text = _(
-	                         "<table>"
-	                         "<tr><td>Tab</td><td>Next field</td></tr>"
-	                         "<tr><td>Shift+Tab</td><td>Previous field</td></tr>"
-	                         "<tr><td>Down</td><td>Next line</td></tr>"
-	                         "<tr><td>Up</td><td>Previous line</td></tr>"
-	                         "<tr><td>Ctrl+Space</td><td>Spelling suggestions</td></tr>"
-	                         "<tr><td>Ctrl+Enter</td><td>Add word to dictionary</td></tr>"
-	                         "<tr><td>Ctrl+B</td><td>Toggle bold</td></tr>"
-	                         "<tr><td>Ctrl+I</td><td>Toggle italic</td></tr>"
-	                         "<tr><td>Ctrl+D</td><td>Divide word at cursor position</td></tr>"
-	                         "<tr><td>Ctrl+M</td><td>Merge with previous word</td></tr>"
-	                         "<tr><td>Ctrl+Shift+M</td><td>Merge with next word</td></tr>"
-	                         "<tr><td>Ctrl+Delete</td><td>Delete word</td></tr>"
-	                         "<tr><td>Ctrl+{Left,Right}</td><td>Adjust left bounding box edge</td></tr>"
-	                         "<tr><td>Ctrl+Shift+{Left,Right}</td><td>Adjust right bounding box edge</td></tr>"
-	                         "<tr><td>Ctrl+{Up,Down}</td><td>Adjust top bounding box edge</td></tr>"
-	                         "<tr><td>Ctrl+Shift+{Up,Down}</td><td>Adjust bottom bounding box edge</td></tr>"
-	                         "<tr><td>Ctrl++</td><td>Increase font size</td></tr>"
-	                         "<tr><td>Ctrl+-</td><td>Decrease font size</td></tr>"
-	                         "</table>"
-	                     );
-	// Just to keep the same translation string with the qt interface
-	Utils::string_replace(text, "<table>", "", true);
-	Utils::string_replace(text, "<tr><td>", "", true);
-	Utils::string_replace(text, "</td><td>", "\t\t", true);
-	Utils::string_replace(text, "</td></tr>", "\n", true);
-	Utils::string_replace(text, "</table>", "", true);
-	Utils::messageBox(Gtk::MESSAGE_INFO, _("Keyboard Shortcuts"), text, "", Utils::Button::Ok, MAIN->getWindow());
+	m_shortcutsUi.setupUi();
 }
 
 Glib::ustring HOCRProofReadWidget::confidenceStyle(int wconf) const {

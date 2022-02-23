@@ -22,6 +22,7 @@
 
 #include <gtkmm.h>
 #include "common.hh"
+#include "ui_ShortcutsDialog.hh"
 
 class HOCRItem;
 
@@ -59,6 +60,8 @@ private:
 	void showSettingsMenu();
 	void repositionWidget();
 	void updateWidget(bool force = false);
+
+	Ui::ShortcutsDialog m_shortcutsUi;
 	void showShortcutsDialog();
 };
 
