@@ -124,6 +124,12 @@ std::vector<T> vector_slice(const std::vector<T>& vector, int start, int count =
 	return result;
 }
 
+template<class T>
+int vector_index_of(const std::vector<T>& vector, T item) {
+	auto it = std::find(vector.begin(), vector.end(), item);
+	return it == vector.end() ? -1 : std::distance(vector.begin(), it);
+}
+
 template<class T, class It = std::reverse_iterator<typename T::iterator>>
 rev_iters<It> reverse(T& t) {
 	return { t.rbegin(), t.rend() };

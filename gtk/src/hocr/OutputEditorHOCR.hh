@@ -36,6 +36,7 @@ class HOCRDocument;
 class HOCRItem;
 class HOCRPage;
 class SearchReplaceFrame;
+class HOCRProofReadWidget;
 
 class OutputEditorHOCR : public OutputEditor {
 public:
@@ -128,6 +129,7 @@ private:
 	Glib::RefPtr<Gtk::TreeStore> m_propStore;
 	SearchReplaceFrame* m_searchFrame;
 	DisplayerToolHOCR* m_tool;
+	HOCRProofReadWidget* m_proofReadWidget;
 	bool m_modified = false;
 	std::string m_filebasename;
 	InsertMode m_insertMode = InsertMode::Append;

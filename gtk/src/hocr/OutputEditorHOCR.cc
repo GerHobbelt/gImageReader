@@ -33,6 +33,7 @@
 #include "HOCRDocument.hh"
 #include "HOCROdtExporter.hh"
 #include "HOCRPdfExporter.hh"
+#include "HOCRProofReadWidget.hh"
 #include "HOCRTextExporter.hh"
 #include "MainWindow.hh"
 #include "OutputEditorHOCR.hh"
@@ -407,6 +408,10 @@ OutputEditorHOCR::OutputEditorHOCR(DisplayerToolHOCR* tool) {
 	buffer->set_language(Gsv::LanguageManager::get_default()->get_language("xml"));
 	ui.textviewSource->set_buffer(buffer);
 
+	// Proofread widget
+	m_proofReadWidget = new HOCRProofReadWidget(m_treeView);
+	m_proofReadWidget->hide();
+
 	// Search replace frame
 	m_searchFrame = new SearchReplaceFrame();
 	ui.boxSearch->pack_start(*Gtk::manage(m_searchFrame->getWidget()));
@@ -485,6 +490,7 @@ OutputEditorHOCR::~OutputEditorHOCR() {
 	MAIN->getDisplayer()->removeItem(m_preview);
 	delete m_preview;
 	delete m_searchFrame;
+	delete m_proofReadWidget;
 	m_connectionCustomFont.disconnect();
 	m_connectionDefaultFont.disconnect();
 }
@@ -993,18 +999,22 @@ void OutputEditorHOCR::pickItem(const Geometry::Point& point) {
 	int pageNr;
 	Glib::ustring filename = MAIN->getDisplayer()->getCurrentImage(pageNr);
 	Gtk::TreeIter pageIndex = m_document->searchPage(filename, pageNr);
-	const HOCRItem* currentItem = m_document->itemAtIndex(pageIndex);
-	if(!currentItem) {
+	const HOCRItem* pageItem = m_document->itemAtIndex(pageIndex);
+	if(!pageItem) {
 		return;
 	}
-	const HOCRPage* page = currentItem->page();
+	const HOCRPage* page = pageItem->page();
 	// Transform point in coordinate space used when page was OCRed
 	double alpha = (page->angle() - MAIN->getDisplayer()->getCurrentAngle()) / 180. * M_PI;
 	double scale = double(page->resolution()) / double(MAIN->getDisplayer()->getCurrentResolution());
 	Geometry::Point newPoint( scale * (point.x * std::cos(alpha) - point.y * std::sin(alpha)) + 0.5 * page->bbox().width,
 	                          scale * (point.x * std::sin(alpha) + point.y * std::cos(alpha)) + 0.5 * page->bbox().height);
-	m_treeView->setCurrentIndex(m_document->searchAtCanvasPos(pageIndex, newPoint));
-	m_treeView->grab_focus();
+	Gtk::TreeIter index = m_document->searchAtCanvasPos(pageIndex, newPoint);
+	showItemProperties(index);
+	const HOCRItem* item = m_document->itemAtIndex(index);
+	if(item->itemClass() != "ocrx_word" && item->itemClass() != "ocr_line") {
+		m_treeView->grab_focus();
+	}
 }
 
 bool OutputEditorHOCR::open(InsertMode mode, std::vector<Glib::RefPtr<Gio::File>> files) {

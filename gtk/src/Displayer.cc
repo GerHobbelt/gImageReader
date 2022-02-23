@@ -99,6 +99,10 @@ Displayer::Displayer(const Ui::MainWindow& _ui)
 		ui.iconviewThumbnails->scroll_to_path(path, false, 0., 0.);
 		m_connection_thumbClicked.block(false);
 	});
+	CONNECT(m_hadj, changed, [this] { m_signalViewportChanged.emit(); });
+	CONNECT(m_hadj, value_changed, [this] { m_signalViewportChanged.emit(); });
+	CONNECT(m_vadj, changed, [this] { m_signalViewportChanged.emit(); });
+	CONNECT(m_vadj, value_changed, [this] { m_signalViewportChanged.emit(); });
 
 	ADD_SETTING(SwitchSettingT<Gtk::ToggleButton>("thumbnails", ui.checkBoxThumbnails));
 	// Adjust paned position as soon as window is visible
@@ -394,6 +398,7 @@ void Displayer::setZoom(Zoom zoom) {
 
 	m_connection_zoomfitClicked.block(false);
 	m_connection_zoomoneClicked.block(false);
+	m_signalViewportChanged.emit();
 }
 
 void Displayer::setRotateMode(RotateMode mode, const std::string& iconName) {
@@ -686,6 +691,14 @@ Geometry::Point Displayer::mapToView(const Geometry::Point& p) const {
 	Gtk::Allocation alloc = ui.drawingareaDisplay->get_allocation();
 	return Geometry::Point(alloc.get_x() + 0.5 * alloc.get_width() + p.x * m_scale,
 	                       alloc.get_y() + 0.5 * alloc.get_height() + p.y * m_scale);
+}
+
+void Displayer::mapViewToRoot(int x_view, int y_view, int& x_root, int& y_root) const {
+	ui.viewportDisplay->translate_coordinates(*ui.viewportDisplay->get_toplevel(), x_view, y_view, x_root, y_root);
+	int win_x, win_y;
+	MAIN->getWindow()->get_window()->get_origin(win_x, win_y);
+	x_root += win_x - m_hadj->get_value();
+	y_root += win_y - m_vadj->get_value();
 }
 
 Cairo::RefPtr<Cairo::ImageSurface> Displayer::getImage(const Geometry::Rectangle& rect) const {

@@ -63,6 +63,7 @@ public:
 	Geometry::Rectangle getSceneBoundingRect() const;
 	Geometry::Point mapToSceneClamped(const Geometry::Point& p) const;
 	Geometry::Point mapToView(const Geometry::Point& p) const;
+	void mapViewToRoot(int x_view, int y_view, int& x_root, int& y_root) const;
 	bool hasMultipleOCRAreas();
 	std::vector<Cairo::RefPtr<Cairo::ImageSurface>> getOCRAreas();
 	bool allowAutodetectOCRAreas() const;
@@ -79,6 +80,8 @@ public:
 	void setBlockAutoscale(bool block);
 
 	sigc::signal<void> signal_imageChanged() const { return m_signalImageChanged; }
+
+	sigc::signal<void> signal_viewportChanged() const { return m_signalViewportChanged; }
 
 
 private:
@@ -104,6 +107,8 @@ private:
 	DisplayerItem* m_activeItem = nullptr;
 	double m_panPos[2] = {0., 0.};
 	Glib::RefPtr<Gdk::Cursor> m_defaultCursor;
+
+	sigc::signal<void> m_signalViewportChanged;
 
 	sigc::connection m_renderTimer;
 	sigc::connection m_connection_pageSpinChanged;
