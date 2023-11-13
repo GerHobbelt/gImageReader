@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-24 23:16+0100\n"
-"PO-Revision-Date: 2022-08-29 09:20+0000\n"
-"Last-Translator: Tymofii Lytvynenko <till.svit@gmail.com>\n"
+"PO-Revision-Date: 2023-01-27 21:39+0000\n"
+"Last-Translator: Dan <denqwerta@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/gimagereader/"
 "translations/uk/>\n"
 "Language: uk\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: ../data/gimagereader.desktop.in.h:1
 msgid "OCR application"
-msgstr "OCR-додаток"
+msgstr "OCR застосунка"
 
 #: ../gtk/data/appmenu.ui.h:1 ../qt/src/Ui_MainWindow.hh:169
 msgid "Redetect Languages"
@@ -167,7 +167,7 @@ msgstr "Користувацькі шляхи"
 
 #: ../gtk/data/ConfigDialog.ui.h:25 ../qt/data/ConfigDialog.ui.h:29
 msgid "Automatically open exported documents with default application"
-msgstr "Автоматично відкривати експортовані документи у типовому додатку"
+msgstr "Автоматично відкривати експортовані документи у типовому застосунку"
 
 #: ../gtk/data/CrashHandler.ui.h:1 ../qt/src/CrashHandler.cc:38
 msgid "Regenerate backtrace"
@@ -184,11 +184,11 @@ msgid ""
 "describe what you were doing before the application crashed. Also, include "
 "the information below. Thank you."
 msgstr ""
-"<b>Додаток аварійно завершився</b>\n"
+"<b>Застосунок аварійно завершився</b>\n"
 "\n"
-"Приносимо вибачення за незручності. Для допомоги у покращенні додатку, будь "
-"ласка, напишіть про проблему на електронну пошту <a href=\"mailto:"
-"manisandro@gmail.com?subject=gImageReader%20Crash\">manisandro@gmail.com</"
+"Приносимо вибачення за незручності. Для допомоги у покращенні застосунку, "
+"будь ласка, напишіть про проблему на електронну пошту <a href=\"mailto"
+":manisandro@gmail.com?subject=gImageReader%20Crash\">manisandro@gmail.com</"
 "a>. Намагайтеся описати, які дії ви виконували перед тим, як додаток "
 "аварійно завершився. Також додайте інформацію, розміщену нижче. Дякуємо."
 
@@ -229,7 +229,7 @@ msgstr "Закрити"
 #: ../gtk/data/HOCRBatchExportDialog.ui.h:4
 #: ../qt/data/HOCRBatchExportDialog.ui.h:6
 msgid "Select source folder:"
-msgstr "Вибрати вихідний каталог..."
+msgstr "Вибрати вихідний каталог:"
 
 #: ../gtk/data/HOCRBatchExportDialog.ui.h:5 ../gtk/data/PdfExportWidget.ui.h:5
 #: ../qt/data/HOCRBatchExportDialog.ui.h:7 ../qt/data/PdfExportDialog.ui.h:16
@@ -2175,13 +2175,13 @@ msgid ""
 "a>. Please try to describe what you were doing before the application "
 "crashed. Also, include the information below. Thank you.</p></body></html>"
 msgstr ""
-"<html><head/><body><p><span style=\" font-weight:600;\">Програма зазнала "
-"аварії</span></p><p>Приносимо вибачення за незручності. Для допомоги у "
-"покращенні додатку, будь ласка, напишіть про проблему на електронну пошту <a "
-"href=\"mailto:manisandro@gmail.com?"
-"subject=gImageReader%20Crash\">manisandro@gmail.com</a>. Намагайтеся "
-"описати, які дії ви виконували перед тим, як додаток аварійно завершився. "
-"Також додайте інформацію, розміщену нижче. Дякуємо.</p></body></html>"
+"<html><head/><body><p><span style=\" font-weight:600;\">Застосунок аварійно "
+"завершив роботу</span></p><p>Приносимо вибачення за незручності. Для "
+"допомоги у покращенні застосунку, будь ласка, напишіть про проблему на "
+"електронну пошту <a href=\"mailto:manisandro@gmail.com?subject=gImageReader%"
+"20Crash\">manisandro@gmail.com</a>. Намагайтеся описати, які дії ви "
+"виконували перед тим, як застосунок аварійно завершився. Також додайте "
+"інформацію, розміщену нижче. Дякуємо.</p></body></html>"
 
 #: ../qt/data/CrashHandler.ui.h:3
 msgid ""

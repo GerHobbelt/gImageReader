@@ -279,7 +279,7 @@ void OutputEditorHOCR::HOCRBatchProcessor::appendOutput(std::ostream& dev, tesse
 	attrs["image"] = Glib::ustring::compose("'%1'", Glib::path_get_basename(pageInfos.filename));
 	attrs["ppageno"] = Glib::ustring::compose("%1", pageInfos.page);
 	attrs["rot"] = Glib::ustring::compose("%1", pageInfos.angle);
-	attrs["res"] = Glib::ustring::compose("%1", pageInfos.resolution);
+	attrs["scan_res"] = Glib::ustring::compose("%1", pageInfos.resolution);
 	pageDiv->set_attribute("title", HOCRItem::serializeAttrGroup(attrs));
 	doc->write_to_stream(dev);
 }
@@ -478,6 +478,8 @@ OutputEditorHOCR::OutputEditorHOCR(DisplayerToolHOCR* tool) {
 	CONNECT(ui.buttonCollapseAll, clicked, [this] { expandCollapseItemClass(false); });
 	m_connectionSourceChanged = CONNECT(MAIN->getDisplayer(), imageChanged, [this] { sourceChanged(); });
 
+	ADD_SETTING(SwitchSettingT<Gtk::ToggleButton>("displayconfidence", ui.buttonWconf));
+
 	setFont();
 }
 
@@ -554,7 +556,7 @@ void OutputEditorHOCR::addPage(const Glib::ustring& hocrText, HOCRReadSessionDat
 	attrs["image"] = Glib::ustring::compose("'%1'", data.pageInfo.filename);
 	attrs["ppageno"] = Glib::ustring::compose("%1", data.pageInfo.page);
 	attrs["rot"] = Glib::ustring::compose("%1", data.pageInfo.angle);
-	attrs["res"] = Glib::ustring::compose("%1", data.pageInfo.resolution);
+	attrs["scan_res"] = Glib::ustring::compose("%1", data.pageInfo.resolution);
 	pageDiv->set_attribute("title", HOCRItem::serializeAttrGroup(attrs));
 
 	Gtk::TreeIter index = m_document->insertPage(data.insertIndex, pageDiv, true);
@@ -1158,7 +1160,7 @@ bool OutputEditorHOCR::exportToODT() {
 	std::string suggestion = m_filebasename;
 	if(suggestion.empty()) {
 		std::vector<Source*> sources = MAIN->getSourceManager()->getSelectedSources();
-		suggestion = !sources.empty() ? Glib::path_get_basename(sources.front()->displayname) : _("output");
+		suggestion = !sources.empty() ? Utils::split_filename(Glib::path_get_basename(sources.front()->displayname)).first : _("output");
 	}
 
 	FileDialogs::FileFilter filter = {_("OpenDocument Text Documents"), {"application/vnd.oasis.opendocument.text"}, {"*.odt"}};
@@ -1194,7 +1196,7 @@ bool OutputEditorHOCR::exportToPDF() {
 	std::string suggestion = m_filebasename;
 	if(suggestion.empty()) {
 		std::vector<Source*> sources = MAIN->getSourceManager()->getSelectedSources();
-		suggestion = !sources.empty() ? Glib::path_get_basename(sources.front()->displayname) : _("output");
+		suggestion = !sources.empty() ? Utils::split_filename(Glib::path_get_basename(sources.front()->displayname)).first : _("output");
 	}
 
 	std::string outname;
@@ -1224,7 +1226,7 @@ bool OutputEditorHOCR::exportToText() {
 	std::string suggestion = m_filebasename;
 	if(suggestion.empty()) {
 		std::vector<Source*> sources = MAIN->getSourceManager()->getSelectedSources();
-		suggestion = !sources.empty() ? Glib::path_get_basename(sources.front()->displayname) : _("output");
+		suggestion = !sources.empty() ? Utils::split_filename(Glib::path_get_basename(sources.front()->displayname)).first : _("output");
 	}
 
 	FileDialogs::FileFilter filter = {_("Text Files"), {"text/plain"}, {"*.txt"}};

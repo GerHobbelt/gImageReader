@@ -265,7 +265,7 @@ void OutputEditorHOCR::HOCRBatchProcessor::appendOutput(QIODevice* dev, tesserac
 	attrs["image"] = QString("'./%1'").arg(QFileInfo(pageInfos.filename).fileName());
 	attrs["ppageno"] = QString::number(pageInfos.page);
 	attrs["rot"] = QString::number(pageInfos.angle);
-	attrs["res"] = QString::number(pageInfos.resolution);
+	attrs["scan_res"] = QString::number(pageInfos.resolution);
 	pageDiv.setAttribute("title", HOCRItem::serializeAttrGroup(attrs));
 	dev->write(doc.toByteArray());
 }
@@ -334,7 +334,7 @@ OutputEditorHOCR::OutputEditorHOCR(DisplayerToolHOCR* tool) {
 	connect(ui.actionOutputClear, &QAction::triggered, this, &OutputEditorHOCR::clear);
 	connect(ui.actionOutputReplace, &QAction::triggered, ui.searchFrame, &SearchReplaceFrame::setVisible);
 	connect(ui.actionOutputReplace, &QAction::triggered, ui.searchFrame, &SearchReplaceFrame::clear);
-	connect(ui.actionToggleWConf, &QAction::triggered, this, &OutputEditorHOCR::toggleWConfColumn);
+	connect(ui.actionToggleWConf, &QAction::toggled, this, &OutputEditorHOCR::toggleWConfColumn);
 	connect(ui.actionPreview, &QAction::toggled, this, &OutputEditorHOCR::previewToggled);
 	connect(ui.actionProofread, &QAction::toggled, m_proofReadWidget, &HOCRProofReadWidget::setProofreadEnabled);
 	connect(&m_previewTimer, &QTimer::timeout, this, &OutputEditorHOCR::updatePreview);
@@ -361,6 +361,8 @@ OutputEditorHOCR::OutputEditorHOCR(DisplayerToolHOCR* tool) {
 	connect(ui.actionExpandAll, &QAction::triggered, this, &OutputEditorHOCR::expandItemClass);
 	connect(ui.actionCollapseAll, &QAction::triggered, this, &OutputEditorHOCR::collapseItemClass);
 	connect(MAIN->getDisplayer(), &Displayer::imageChanged, this, &OutputEditorHOCR::sourceChanged);
+
+	ADD_SETTING(ActionSetting("displayconfidence", ui.actionToggleWConf, false));
 
 	setFont();
 }
@@ -432,7 +434,7 @@ void OutputEditorHOCR::addPage(const QString& hocrText, HOCRReadSessionData data
 	attrs["image"] = QString("'%1'").arg(data.pageInfo.filename);
 	attrs["ppageno"] = QString::number(data.pageInfo.page);
 	attrs["rot"] = QString::number(data.pageInfo.angle);
-	attrs["res"] = QString::number(data.pageInfo.resolution);
+	attrs["scan_res"] = QString::number(data.pageInfo.resolution);
 	pageDiv.setAttribute("title", HOCRItem::serializeAttrGroup(attrs));
 
 	QModelIndex index = m_document->insertPage(data.insertIndex, pageDiv, true);
