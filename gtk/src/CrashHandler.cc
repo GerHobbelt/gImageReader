@@ -1,7 +1,7 @@
 /* -*- Mode: C++; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
 /*
  * CrashHandler.cc
- * Copyright (C) 2013-2022 Sandro Mani <manisandro@gmail.com>
+ * Copyright (C) 2013-2024 Sandro Mani <manisandro@gmail.com>
  *
  * gImageReader is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -139,7 +139,7 @@ bool CrashHandler::handle_stdout(Glib::IOCondition cond, Glib::RefPtr<Glib::IOCh
 
 void CrashHandler::handle_child_exit(GPid pid, gint status, void* data) {
 	CrashHandler* instance = reinterpret_cast<CrashHandler*>(data);
-	bool success = g_spawn_check_exit_status(status, nullptr);
+	bool success = g_spawn_check_wait_status(status, nullptr);
 	instance->generate_backtrace_end(success);
 	Glib::spawn_close_pid(pid);
 }

@@ -1,7 +1,7 @@
 /* -*- Mode: C++; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
 /*
  * HOCRDocument.cc
- * Copyright (C) 2013-2022 Sandro Mani <manisandro@gmail.com>
+ * Copyright (C) 2013-2024 Sandro Mani <manisandro@gmail.com>
  *
  * gImageReader is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -240,7 +240,7 @@ Gtk::TreeIter HOCRDocument::mergeItems(const Gtk::TreeIter& parent, int startRow
 		for(HOCRItem* child : moveChilds) {
 			targetItem->addChild(child);
 			Gtk::TreeIter newIndex = targetIndex->children()[child->index()];
-			row_inserted(get_path(newIndex), newIndex);
+			recursiveRowInserted(newIndex);
 		}
 	}
 	Glib::ustring bboxstr = Glib::ustring::compose("%1 %2 %3 %4", bbox.x, bbox.y, bbox.x + bbox.width, bbox.y + bbox.height);

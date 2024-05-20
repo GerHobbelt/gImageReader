@@ -1,7 +1,7 @@
 /* -*- Mode: C++; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
 /*
  * SourceManager.cc
- * Copyright (C) 2013-2022 Sandro Mani <manisandro@gmail.com>
+ * Copyright (C) 2013-2024 Sandro Mani <manisandro@gmail.com>
  *
  * gImageReader is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -332,6 +332,11 @@ void SourceManager::takeScreenshot() {
 		root->get_origin(x, y);
 		w = root->get_width();
 		h = root->get_height();
+		if (w == 0 || h == 0) {
+			MAIN->getWindow()->deiconify();
+			Utils::messageBox(Gtk::MESSAGE_ERROR, _("Screenshot Error"),  _("Failed to take screenshot."));
+			return;
+		}
 		Glib::RefPtr<Gdk::Pixbuf> pixbuf = Gdk::Pixbuf::create(root, x, y, w, h);
 		MAIN->getWindow()->deiconify();
 		if(!pixbuf) {
