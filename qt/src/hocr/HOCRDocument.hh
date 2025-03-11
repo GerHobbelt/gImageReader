@@ -1,7 +1,7 @@
 /* -*- Mode: C++; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
 /*
  * HOCRDocument.hh
- * Copyright (C) 2013-2024 Sandro Mani <manisandro@gmail.com>
+ * Copyright (C) 2013-2025 Sandro Mani <manisandro@gmail.com>
  *
  * gImageReader is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -58,12 +58,12 @@ public:
 	}
 
 	const HOCRItem* itemAtIndex(const QModelIndex& index) const {
-		return index.isValid() ? static_cast<HOCRItem*>(index.internalPointer()) : nullptr;
+		return index.isValid() ? static_cast<HOCRItem*> (index.internalPointer()) : nullptr;
 	}
 	QModelIndex indexAtItem(const HOCRItem* item) const;
 	bool editItemAttribute(const QModelIndex& index, const QString& name, const QString& value, const QString& attrItemClass = QString());
-	QModelIndex moveItem(const QModelIndex& itemIndex, const QModelIndex& newParent, int row);
-	QModelIndex swapItems(const QModelIndex& parent, int startRow, int endRow);
+	QModelIndex moveItem(const QModelIndex& itemIndex, const QModelIndex& newParent, int newRow);
+	QModelIndex swapItems(const QModelIndex& parent, int firstRow, int secondRow);
 	QModelIndex mergeItems(const QModelIndex& parent, int startRow, int endRow);
 	QModelIndex splitItem(const QModelIndex& itemIndex, int startRow, int endRow);
 	QModelIndex splitItemText(const QModelIndex& itemIndex, int pos);
@@ -111,7 +111,7 @@ private:
 	QList<QModelIndex> recheckItemSpelling(const QModelIndex& index) const;
 	void recomputeBBoxes(HOCRItem* item);
 	HOCRItem* mutableItemAtIndex(const QModelIndex& index) const {
-		return index.isValid() ? static_cast<HOCRItem*>(index.internalPointer()) : nullptr;
+		return index.isValid() ? static_cast<HOCRItem*> (index.internalPointer()) : nullptr;
 	}
 };
 
@@ -119,7 +119,7 @@ private:
 class HOCRItem {
 public:
 	// attrname : attrvalue : occurrences
-	typedef QMap<QString, QMap<QString, int>> AttrOccurenceMap_t;
+	typedef QMap<QString, QMap<QString, int >> AttrOccurenceMap_t;
 
 	HOCRItem(const QDomElement& element, HOCRPage* page, HOCRItem* parent, int index = -1);
 	virtual ~HOCRItem();
@@ -165,7 +165,7 @@ public:
 	}
 	QMap<QString, QString> getAllAttributes() const;
 	QMap<QString, QString> getAttributes(const QList<QString>& names) const;
-	void getPropagatableAttributes(QMap<QString, QMap<QString, QSet<QString> > >& occurrences) const;
+	void getPropagatableAttributes(QMap<QString, QMap<QString, QSet<QString >>> & occurrences) const;
 	QString toHtml(int indent = 0) const;
 	QPair<double, double> baseLine() const;
 	QString fontFamily() const {
@@ -208,7 +208,7 @@ protected:
 
 	// All mutations must be done through methods of HOCRDocument
 	void addChild(HOCRItem* child);
-	void insertChild(HOCRItem* child, int index);
+	void insertChild(HOCRItem* child, int i);
 	void removeChild(HOCRItem* child);
 	void takeChild(HOCRItem* child);
 	QVector<HOCRItem*> takeChildren();
